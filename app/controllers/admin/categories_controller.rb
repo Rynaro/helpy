@@ -56,6 +56,7 @@ class Admin::CategoriesController < Admin::BaseController
     :title_tag,
     :icon,
     :meta_description,
+    :internal,
     :front_page,
     :active,
     :section,
@@ -65,7 +66,8 @@ class Admin::CategoriesController < Admin::BaseController
 
   def set_categories_and_non_featured
     @categories = Category.featured.ordered
-    @nonfeatured = Category.where(front_page: false).alpha
+    @nonfeatured = Category.public_non_featured.alpha
+    @internal = Category.is_internal.alpha
   end
 
 

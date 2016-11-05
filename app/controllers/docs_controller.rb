@@ -35,17 +35,21 @@ class DocsController < ApplicationController
     @doc = Doc.where(id: params[:id]).active.first
 
     unless @doc.nil?
-      @page_title = @doc.title
-      @custom_title = @doc.title_tag.blank? ? @page_title : @doc.title_tag
-      @topic = @doc.topic.present? ? @doc.topic : Topic.new
-      @post = @doc.topic.present? ? @topic.posts.new : Post.new
-      @posts = @topic.posts.ispublic.active.includes(:user) unless @topic.nil?
-      @forum = Forum.for_docs.first
-      @comment = @forum.topics.new
-      @user = User.new unless user_signed_in?
-      add_breadcrumb t(:knowledgebase, default: "Knowledgebase"), categories_path
-      add_breadcrumb @doc.category.name, category_path(@doc.category) if @doc.category.name
-      add_breadcrumb @doc.title
+      unless @doc.category.internal
+        @page_title = @doc.title
+        @custom_title = @doc.title_tag.blank? ? @page_title : @doc.title_tag
+        @topic = @doc.topic.present? ? @doc.topic : Topic.new
+        @post = @doc.topic.present? ? @topic.posts.new : Post.new
+        @posts = @topic.posts.ispublic.active.includes(:user) unless @topic.nil?
+        @forum = Forum.for_docs.first
+        @comment = @forum.topics.new
+        @user = User.new unless user_signed_in?
+        add_breadcrumb t(:knowledgebase, default: "Knowledgebase"), categories_path
+        add_breadcrumb @doc.category.name, category_path(@doc.category) if @doc.category.name
+        add_breadcrumb @doc.title
+      else
+        redirect_to root_url  
+      end
     else
       redirect_to root_url
     end

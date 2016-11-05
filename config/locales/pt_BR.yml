@@ -14,6 +14,7 @@ pt-br:
 
   # Navigation
   knowledgebase: "Base de Conhecimento"
+  internal_knowledgebase: "Base de Conhecimento Interna"
   community: "Comunidade"
   ask_a_question: "Faça-nos uma Pergunta"
   home: "Início"
@@ -207,8 +208,10 @@ pt-br:
   # Content
   new_category: "Nova Categoria"
   new_content: "Novo Conteúdo"
-  front_page_categories: "Categorias do FrontOffice"
+  access_internal_knowledgebase: "Acessar Base de Conhecimento Interna"
+  front_page_categories: "Categorias em Destaque"
   other_categories: "Outras Categorias"
+  internal_categories: "Categorias Internas"
   edit: "Editar"
   edit_category: "Editar Categoria"
   select_category: "Selecione uma Categoria"
@@ -365,6 +368,7 @@ pt-br:
         keywords: "Palavras-Chave"
         title_tag: "Meta Título"
         meta_description: "Meta Descrição"
+        internal: "Visibilidade"
         front_page: "Página Frontal"
         active: "Ativo"
       doc:

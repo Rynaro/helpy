@@ -15,6 +15,7 @@ $(document).ready(function(){
 <div class="admin-header">
   <h2><%= t(:content, default: 'Content') %>
     <span class="admin-options text-right pull-right">
+    <%= link_to t(:access_internal_knowledgebase, default: "Access Internal Knowledgebase"), categories_path(lang: I18n.locale, internal: true), class: 'btn btn-default' %>
     <%= link_to t(:new_category, default: "New Category"), new_admin_category_path(lang: I18n.locale), class: 'btn btn-primary' %>
     <%= link_to t(:new_content, default: "New Content"), new_admin_doc_path(lang: I18n.locale), class: 'btn btn-primary' %>
     </span>
@@ -24,6 +25,7 @@ $(document).ready(function(){
 
 <div class="row">
   <div class="col-md-12">
+    <h4 class="category-header"><%= t(:public_content, default: 'Public Content') %></h4>
     <table id="forums" class="table-hover sortable">
       <col>
       <col width="5%">
@@ -49,6 +51,24 @@ $(document).ready(function(){
           <td colspan="2" class='tiny-header'><%= t(:other_categories, default: 'Other Categories') %></td>
         </tr>
         <%= render partial: 'cat', collection: @nonfeatured %>
+      </tbody>
+    </table>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h4 class="category-header"><%= t(:internal_content, default: 'Internal Content') %></h4>
+    <% if @internal.count > 0 %>
+    <table id="forums" class="table-hover">
+      <col>
+      <col width="5%">
+      <tbody id="categories">
+        <tr>
+          <td colspan="2" class='tiny-header'><%= t(:internal_categories, default: 'Internal Categories') %></td>
+        </tr>
+        <%= render partial: 'cat', collection: @internal %>
       </tbody>
     </table>
     <% end %>

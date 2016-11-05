@@ -32,7 +32,11 @@ class Category < ActiveRecord::Base
   scope :main, -> { where(section: 'main') }
   scope :ordered, -> { order('rank ASC') }
   scope :ranked, -> { order('rank ASC') }
+  scope :is_public, -> { where(internal: false) }
+  scope :is_internal, -> { where(internal: true) }
   scope :featured, -> { where(front_page: true) }
+  scope :public_non_featured, -> { where('front_page = ? AND internal = ?', false, false) }
+  
 
   include RankedModel
   ranks :rank

@@ -302,6 +302,7 @@ en:
         keywords: Keywords
         title_tag: Title Tag
         meta_description: Meta Description
+        internal: Category Visibility
         front_page: Front Page
         active: Active
       doc:
